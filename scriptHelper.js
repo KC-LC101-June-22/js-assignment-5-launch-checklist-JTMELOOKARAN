@@ -37,9 +37,31 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
    if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number" || validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value)
  === "Not a Number"{
-     alert("Invalid Input")
- }
-}
+     alert("Invalid Input");
+ } else {
+        pilotStatus.innerHTML = `Pilot: ${pilot.value}`
+        copilotStatus.innerHTML = `Co-Pilot: ${copilotvalue}`
+        if (fuelLevel.value < 10000){
+            faultyItems.style.visibility = "visible"
+            fuelStatus.innerHTML = "There is not enough fuel for the journey!"
+            launchStatus.innerHTML = "Shuttle not ready for launch"
+            launchStatus.style.color = "red";
+        }else if (cargoLevel.value > 10000){
+            faultyItems.style.visibility = "visible";
+            cargoStatus.innerHTML = "There is too much mass for the shuttle to take off!";
+            launchStatus.innerHTML = "Shuttle not ready for launch";
+            launchStatus.style.color = "red";
+        }else {
+            launchStatus.inerHTML = "SHUTTLE READY FOR LAUNCH";
+            launchStatus.style.color = "green";
+
+        }
+
+
+        }
+    }
+ 
+
 
 async function myFetch() {
     let planetsReturned;
