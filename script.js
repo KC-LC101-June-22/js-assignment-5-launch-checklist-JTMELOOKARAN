@@ -1,6 +1,26 @@
 // Write your JavaScript code here!
 
+const { formSubmission } = require("./scriptHelper");
+
 window.addEventListener("load", function() {
+
+    let form = doument.querySelector("form")
+    form.addEventListener("submit", function(event){
+        let document = window.document;
+        let userPilot = document.querySelector("input[name=pilotName]")
+        let userCopilot = document.querySelector("input[name=copilotName]")
+        let userFuellevel = document.querySelector("input[name=Fuellevel]")
+        let userCargomass = document.querySelector("input[name=Cargomass]")
+
+        if (userPilot.value === "" || usercopilot.value === "" || userFuellevel.value === "" || userCargomass.value === ""){
+            alert("Must Complete All Fields!")
+            event.preventDefault();
+
+        } else {
+            formSubmission(document, userPilot, userCopilot, userFuellevel, userCargomass)
+            event.preventDefault();
+        }
+    })
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
