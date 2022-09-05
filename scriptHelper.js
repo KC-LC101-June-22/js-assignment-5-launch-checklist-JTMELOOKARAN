@@ -9,7 +9,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 <ol>
                     <li>Name: ${name} </li>
                     <li>Diameter: ${diameter} </li>
-                    <li>Star: ${star}</li>
+                    <li>Star: ${star} </li>
                     <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons} </li>
                 </ol>
@@ -35,17 +35,18 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    let launchStatus = document.getElementById("launchStatus");
+   list.style.visibility = "hidden"
 
-   if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number" || validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value)
- === "Not a Number"{
+   if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel)
+ === "Not a Number"){
      alert("Invalid Input");
  } else {
-        pilotStatus.innerHTML = `Pilot: ${pilot.value}`
-        copilotStatus.innerHTML = `Co-Pilot: ${copilotvalue}`
+        pilotStatus.innerHTML = `Pilot: ${pilot}`;
+        copilotStatus.innerHTML = `Co-Pilot: ${copilot}`;
         if (fuelLevel.value < 10000){
-            faultyItems.style.visibility = "visible"
-            fuelStatus.innerHTML = "There is not enough fuel for the journey!"
-            launchStatus.innerHTML = "Shuttle not ready for launch"
+            faultyItems.style.visibility = "visible";
+            fuelStatus.innerHTML = "There is not enough fuel for the journey!";
+            launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = "red";
         }else if (cargoLevel.value > 10000){
             faultyItems.style.visibility = "visible";
@@ -76,7 +77,7 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-    let planet = planets[Math.floor(Math.random()*planets.length)];
+    let planet = Math.floor(Math.random()*planets.length);
     return planet;
 }
 
