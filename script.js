@@ -6,10 +6,23 @@ window.addEventListener("load", function() {
     let listedPlanets;
     let listedPlanetsResponse= myFetch();
     listedPlanetsResponse.then(function (result) {
+        listedPlanets=result;
+       let planetPicked = pickPlanet(listedPlanets)
+       console.log(planetPicked)
+       console.log(planetPicked.name)
+
+       addDestinationInfo(document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
 
     })
 
-    let form = document.querySelector("form")
+    
+       /*listedPlanets = result;
+       console.log(listedPlanets);
+   }).then(function () {*/
+       
+       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+      
+let form = document.querySelector("form")
     form.addEventListener("submit", function(event){
         event.preventDefault();
 
@@ -20,20 +33,4 @@ window.addEventListener("load", function() {
 
             formSubmission(document, userPilot, userCopilot, userFuellevel, userCargomass)
         
-
-
-   
-       /*listedPlanets = result;
-       console.log(listedPlanets);
-   }).then(function () {*/
-       
-       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-       listedPlanets=result;
-       let planetPicked = pickPlanet(listedPlanets)
-       console.log(planetPicked)
-       console.log(planetPicked.name)
-
-       addDestinationInfo(document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
-   })
-   
-});
+        });
