@@ -26,8 +26,8 @@ let missionTarget = document.getelementById("missionTarget")
                 </ol>
                 <img src="${imageUrl}>`
 
-        
-   return
+         
+   return missionTarget.innerHTML
 
 }
 
