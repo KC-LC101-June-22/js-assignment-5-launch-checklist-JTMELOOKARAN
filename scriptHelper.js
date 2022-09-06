@@ -3,9 +3,8 @@ require('isomorphic-fetch');
 
 
 async function myFetch() {
-    let planetsReturned;
-
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+   
+    let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
 
         return response.json()
         });
@@ -76,7 +75,7 @@ function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
         console.log(errorMsg)
         return
     }
- 
+}
 pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;
 copilotStatus.innerHTML = `Co-pilot ${copilot} ready for launch`;
 
