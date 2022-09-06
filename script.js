@@ -5,29 +5,43 @@ const { myFetch } = require("./scriptHelper")
 //const { formSubmission, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
+    let document = window.document;
     let form = document.querySelector("form")
     let list= document.getElementById("faultyItems")
-   list.style.visbility= "hidden"
- 
+    let pilotName = document.querySelector("input[name=pilotName]");
+    let copilotName = document.querySelector("input[name=copilotName]");
+    let fuelLevel = document.querySelector("input[name=fuelLevel]");
+    let cargoMass = document.querySelector("input[name=cargoMass]");
+    list.style.visibility = "hidden"
+
+   
+   
 
         form.addEventListener("submit", function(event){
             
-            let pilot = document.querySelector("input[name=pilotName]");
-            let copilot = document.querySelector("input[name=copilotName]");
-            let fuelLevel = document.querySelector("input[name=fuelLevel]");
-            let cargoMass = document.querySelector("input[name=cargoMass]");
-
+            if (pilotName.value ==="" || copilotName.value ==="" ||fuelLevel.value==="" || cargoLevel.value === ""){
+                alert("All fields are required")
+            }
+            formSubmission(window.document, pilotName.value, copilotName.value , fuelLevel.value, cargoMass)
             event.preventDefault();
 
-            formSubmission(document, pilot.value, copilot.value , fuelLevel.value, cargoMass)
+
+
         let listedPlanets;
+        let planetInput;
+        planetInput= myFetch();
 
-        myFetch().then(function( planets){
-            console.log(planets);
+        planetInput.then(function(result){
             listedPlanets = result; 
+            console.log(listedPlanets);
+        }).then(function(){
+            console.log(listedPlanets)
             let planetPicked = pickPlanet(listedPlanets)
+            addDestinationInfo(window.document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
+        })
+            
 
-            addDestinationInfo(document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
+            
         })
         
 
@@ -35,7 +49,7 @@ window.addEventListener("load", function() {
     })
     
 
-     })
+    
 
     
        /*listedPlanets = result;

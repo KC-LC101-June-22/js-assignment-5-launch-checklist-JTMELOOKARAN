@@ -15,7 +15,7 @@ async function myFetch() {
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-let missionTarget = document.getelementById("missionTarget")
+let missionTarget = document.getElementById("missionTarget")
     missionTarget.innerHTML = `<h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name} </li>
@@ -32,11 +32,11 @@ let missionTarget = document.getelementById("missionTarget")
 }
 
 function validateInput(testInput) {
-   if (testInput === ""){
-       return "Empty";
-    
-   } else if (isNaN(testInput)){
+   if (isNaN(testInput)){
        return "Not a Number";
+    
+   } else if (testInput=== ""){
+       return "Empty";
    } else  {
     return "Is a Number";
    }
@@ -54,7 +54,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let copilotStatus = document.getElementById("copilotStatus")
     let cargoStatus = document.getElementById("cargoStatus")
     let fuelStatus = document.getElementById("fuelStatus")
-    list = document.getElementById("faultyItems")
+    let faultyItems = document.getElementById("faultyItems")
 
    //Initialize errror mesage string 
    let errorMsg = "";
@@ -83,8 +83,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         return
     }
 
-document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} ready for launch`;
-document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} ready for launch`;
+    if (validateInput(pilot) === "Not a Number" && validateInput(copilot)=== "Not a Number" && validateInput(fuelLevel)=== "Is a Number"
+    && validateInput(cargoMass) === "Is a Number"){
+        faultyItems.style.visibility= "visible";
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+
+    }
+
+
 
 //Make sure the fuel level checks out 
 const fuelLevelReq= 10000;
@@ -93,33 +100,33 @@ const cargoLevelReq = 10000;
 
 //if statement for each check 
 if(fuelLevel < fuelLevelReq){
-    document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
-    document.getElementById("fuelStatus").innerHTML= "Not enough fuel to launch";
-    document.getElementById("launchStatus").style.color= "red";
-    document.getElementById("faultyItems").style.visibility= "visible"
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    fuelStatus.innerHTML= "There is not enough fuel for the journey";
+    launchStatus.style.color= "red";
+    faultyItems.style.visibility= "visible"
     
 } else {
-    document.getElementById("fuelStatus").innerHTML = "Fuel is good to go"
+    fuelStatus.innerHTML = "Fuel is good to go"
 }
 if (cargoLevel > cargoLevelReq){
-    document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
-    document.getElementById("cargoStatus").innerHTML= "Too much cargo to launch";
-    document.getElementById("launchStatus").style.color= "red";
-    document.getElementById("faultyItems").style.visibility= "visible"
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    cargoStatus.innerHTML= "Too much mass for shuttle to takeoff";
+    launchStatus.style.color= "red";
+   faultyItems.style.visibility= "visible"
     
 } else {
-    document.getElementById("cargoStatus").innerHTML= "Cargo weight good to go"
+   cargoStatus.innerHTML= "Cargo weight good to go"
 }
 //Ready for launch?
 if (fuelLevel >= fuelLevelReq && cargoLvel <= cargoLevelReq){
-    document.getElementById("launchStatus").innerHTML= "Shuttle is ready to launch"
-    document.getElementById("launchStatus").style.color= "green";
-    document.getElementById("launchStatus").style.visibility= "hidden";
+    launchStatus.innerHTML= "Shuttle is ready for launch"
+    launchStatus.style.color= "green";
+    launchStatus.style.visibility= "hidden";
 }
 
 
 function pickPlanet(planets) {
-    let planet = Math.floor(Math.random()*planets.length);
+    let planet = [Math.floor(Math.random()*planets.length)];
     return planet;
 }
 }
