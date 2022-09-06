@@ -3,34 +3,31 @@
 const { formSubmission, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
+    let listedPlanets;
+    let listedPlanetsResponse= myFetch();
+    listedPlanetsResponse.then(function (result) {
+
 
     let form = doument.querySelector("form")
     form.addEventListener("submit", function(event){
-        let document = window.document;
-        let userPilot = document.querySelector("input[name=pilotName]")
-        let userCopilot = document.querySelector("input[name=copilotName]")
-        let userFuellevel = document.querySelector("input[name=Fuellevel]")
-        let userCargomass = document.querySelector("input[name=Cargomass]")
+        event.preventDefault();
 
-        if (userPilot.value === "" || usercopilot.value === "" || userFuellevel.value === "" || userCargomass.value === ""){
-            alert("Must Complete All Fields!")
-            event.preventDefault();
+        let userPilot = document.querySelector("input[name=pilotName]").value;
+        let userCopilot = document.querySelector("input[name=copilotName]").value;
+        let userFuellevel = document.querySelector("input[name=Fuellevel]").value;
+        let userCargomass = document.querySelector("input[name=Cargomass]").value;
 
-        } else {
             formSubmission(document, userPilot, userCopilot, userFuellevel, userCargomass)
-            event.preventDefault();
-        }
+        
     })
 
-   let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse= myFetch();
-   listedPlanetsResponse.then(function (result) {
-       listedPlanets = result;
+   
+       /*listedPlanets = result;
        console.log(listedPlanets);
-   }).then(function () {
-       console.log(listedPlanets);
+   }).then(function () {*/
+       
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+       listedPlanets=result;
        let planetPicked = pickPlanet(listedPlanets)
        console.log(planetPicked)
        console.log(planetPicked.name)
