@@ -1,18 +1,37 @@
 // Write your JavaScript code here!
 
+const { myFetch } = require("./scriptHelper")
+
 //const { formSubmission, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
-    let listedPlanets;
-    let listedPlanetsResponse= myFetch();
-    listedPlanetsResponse.then(function (result) {
-        listedPlanets=result;
-       let planetPicked = pickPlanet(listedPlanets)
-       console.log(planetPicked)
-       console.log(planetPicked.name)
+    let form = document.querySelector("form")
+    let list= document.getElementById("faultyItems")
+   list.style.visbility= "hidden"
+ 
 
-       addDestinationInfo(document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
-    
+        form.addEventListener("submit", function(event){
+            
+            let pilot = document.querySelector("input[name=pilotName]");
+            let copilot = document.querySelector("input[name=copilotName]");
+            let fuelLevel = document.querySelector("input[name=fuelLevel]");
+            let cargoMass = document.querySelector("input[name=cargoMass]");
+
+            event.preventDefault();
+
+            formSubmission(document, pilot.value, copilot.value , fuelLevel.value, cargoMass)
+        let listedPlanets;
+
+        myFetch().then(function( planets){
+            console.log(planets);
+            listedPlanets = result; 
+            let planetPicked = pickPlanet(listedPlanets)
+
+            addDestinationInfo(document, planetPicked.name, planetPicked.diameter , planetPicked.star , planetPicked.distance, planetPicked.moons, planetPicked.image);
+        })
+        
+
+      
     })
 
 
@@ -23,16 +42,20 @@ window.addEventListener("load", function() {
        
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
     
-    let form = document.querySelector("form")
-    form.addEventListener("submit", function(event){
-        event.preventDefault();
+    
 
-        let userPilot = document.querySelector("input[name=userPilot]").value;
-        let userCopilot = document.querySelector("input[name=Copilot]").value;
-        let userFuellevel = document.querySelector("input[name=Fuellevel]").value;
-        let userCargomass = document.querySelector("input[name=Cargomass]").value;
 
-            formSubmission(document, userPilot, userCopilot, userFuellevel, userCargomass)
-        
-        })
-    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
