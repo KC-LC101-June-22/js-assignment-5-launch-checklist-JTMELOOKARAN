@@ -26,8 +26,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="${imageUrl}>`
 
-                document.getElementById("missionTarget").innerHTML = x
-   
+        document.getElementById("missionTarget").innerHTML = x
+   return
+
 }
 
 function validateInput(testInput) {
@@ -42,13 +43,7 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
-   const faultyItems = document.getElementById("faultyItems")
-   const pilotStatus = document.getElementById("pilotStatus");
-   const copilotStatus = document.getElementById("copilotStatus");
-   const fuelStatus = document.getElementById("fuelStatus");
-   const cargoStatus = document.getElementById("cargoStatus");
-   const launchStatus = document.getElementById("launchStatus");
-  
+   
    //Initialize errror mesage string 
    let errorMsg = "";
    //pilot 
@@ -75,9 +70,9 @@ function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
         console.log(errorMsg)
         return
     }
-}
-pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;
-copilotStatus.innerHTML = `Co-pilot ${copilot} ready for launch`;
+
+document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} ready for launch`;
+document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} ready for launch`;
 
 //Make sure the fuel level checks out 
 const fuelLevelReq= 10000;
@@ -114,6 +109,7 @@ if (fuelLevel >= fuelLevelReq && cargoLvel <= cargoLevelReq){
 function pickPlanet(planets) {
     let planet = Math.floor(Math.random()*planets.length);
     return planet;
+}
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
