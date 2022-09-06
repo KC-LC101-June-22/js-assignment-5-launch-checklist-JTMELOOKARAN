@@ -7,19 +7,20 @@ window.addEventListener("load", function() {
     let listedPlanetsResponse= myFetch();
     listedPlanetsResponse.then(function (result) {
 
+    })
 
-    let form = doument.querySelector("form")
+    let form = document.querySelector("form")
     form.addEventListener("submit", function(event){
         event.preventDefault();
 
-        let userPilot = document.querySelector("input[name=pilotName]").value;
-        let userCopilot = document.querySelector("input[name=copilotName]").value;
+        let userPilot = document.querySelector("input[name=userPilot]").value;
+        let userCopilot = document.querySelector("input[name=Copilot]").value;
         let userFuellevel = document.querySelector("input[name=Fuellevel]").value;
         let userCargomass = document.querySelector("input[name=Cargomass]").value;
 
             formSubmission(document, userPilot, userCopilot, userFuellevel, userCargomass)
         
-    })
+
 
    
        /*listedPlanets = result;

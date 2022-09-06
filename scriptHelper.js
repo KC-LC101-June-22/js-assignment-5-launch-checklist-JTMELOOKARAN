@@ -1,11 +1,23 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
+
+async function myFetch() {
+    let planetsReturned;
+
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+
+        return response.json()
+        });
+      
+        return planetsReturned;
+}
+
+
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
 
-    let missionTarget = document.getElementById("missionTarget")
-    missionTarget.innerHTML = `<h2>Mission Destination</h2>
+    x = `<h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name} </li>
                     <li>Diameter: ${diameter} </li>
@@ -14,6 +26,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Number of Moons: ${moons} </li>
                 </ol>
                 <img src="${imageUrl}>`
+
+                document.getElementById("missionTarget").innerHTML = x
    
 }
 
@@ -37,7 +51,7 @@ function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
    const launchStatus = document.getElementById("launchStatus");
   
    //Initialize errror mesage string 
-   let errrorMsg = "";
+   let errorMsg = "";
    //pilot 
    if (validateInput(pilot) === "Is a Number" || pilot === ""){
        errorMsg += "Input invalid";
@@ -96,17 +110,7 @@ if (fuelLevel >= fuelLevelReq && cargoLvel <= cargoLevelReq){
     document.getElementById("launchStatus").style.color= "green";
     document.getElementById("launchStatus").style.visibility= "hidden";
 }
-}
-async function myFetch() {
-    let planetsReturned;
 
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-
-        return response.json()
-        });
-      
-        return planetsReturned;
-}
 
 function pickPlanet(planets) {
     let planet = Math.floor(Math.random()*planets.length);
