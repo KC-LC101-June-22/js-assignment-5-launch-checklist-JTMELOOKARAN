@@ -1,6 +1,6 @@
 // Write your JavaScript code here!
 
-const { formSubmission, addDestinationInfo } = require("./scriptHelper");
+//const { formSubmission, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
     let listedPlanets;
