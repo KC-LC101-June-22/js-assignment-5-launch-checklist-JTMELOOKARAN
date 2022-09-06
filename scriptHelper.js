@@ -15,8 +15,8 @@ async function myFetch() {
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-
-    x = `<h2>Mission Destination</h2>
+let missionTarget = document.getelementById("missionTarget")
+    missionTarget.innerHTML = `<h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name} </li>
                     <li>Diameter: ${diameter} </li>
@@ -26,7 +26,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="${imageUrl}>`
 
-        document.getElementById("missionTarget").innerHTML = x
+        
    return
 
 }
@@ -42,8 +42,20 @@ function validateInput(testInput) {
    }
 }
 
-function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
-   
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    pilot = document.querySelector("input[name=pilotName]")
+    copilot = document.querySelector("input[name=copilotName]")
+    fuelLevel = document.querySelector("input[name=fuelLevel]")
+    cargoMass = document.querySelector("input[name=cargoMass]")
+    
+
+    let launchStatus = document.getElementById("launchStatus");
+    let pilotStatus = document.getElementById("pilotStatus")
+    let copilotStatus = document.getElementById("copilotStatus")
+    let cargoStatus = document.getElementById("cargoStatus")
+    let fuelStatus = document.getElementById("fuelStatus")
+    list = document.getElementById("faultyItems")
+
    //Initialize errror mesage string 
    let errorMsg = "";
    //pilot 
