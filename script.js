@@ -13,28 +13,29 @@ window.addEventListener("load", function() {
     const copilotName = document.querySelector("input[name=copilotName]");
     const fuelLevel = document.querySelector("input[name=fuelLevel]");
     const cargoMass = document.querySelector("input[name=cargoMass]");
+    
+    
     list.style.visibility = "hidden";
+    // document.getElementById("pilotStatus").innerHTML = "Pilot Ready";
+    // document.getElementById("copilotStatus").innerHTML = "Co-pilot Ready";    
+    // document.getElementById("fuelStatus").innerHTML = "Fuel Level high enough for launch";
+    // document.getElementById("cargoStatus").innerHTML = "Cargo Mass low enough for launch";
     
-    
-    
-    
-            form.addEventListener("submit", function(event) {
-                 if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-                     alert("All fields are required!")
-                     event.preventDefault();
-                    }
+    form.addEventListener("submit", function(event) {
+        if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+            alert("All fields are required!");
+        }
         
-                 formSubmission(window.document, list, pilotName.value, copilotName.value, fuelLevel.value, cargoMass.value);
-               
+        formSubmission(window.document, list, pilotName.value, copilotName.value, fuelLevel.value, cargoMass.value);
+        event.preventDefault();
     });
         
-   
+
 
    let listedPlanets;
-   
    let planetInput;
    planetInput = myFetch();
-   planetInput.then(function (result) {
+  planetInput.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {
