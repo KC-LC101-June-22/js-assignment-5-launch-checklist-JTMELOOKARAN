@@ -17,13 +17,15 @@ window.addEventListener("load", function() {
     
     
     
+    
             form.addEventListener("submit", function(event) {
                  if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-                     alert("All fields are required!");
+                     alert("All fields are required!")
+                     event.preventDefault();
                     }
         
                  formSubmission(window.document, list, pilotName.value, copilotName.value, fuelLevel.value, cargoMass.value);
-                event.preventDefault();
+               
     });
         
    

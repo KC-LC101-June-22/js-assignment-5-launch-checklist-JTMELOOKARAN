@@ -77,7 +77,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         }
         else {
             launchStatus.innerHTML = "Shuttle Not Ready for Launch";
-            launchStatus.style.color = "rgb(199, 37, 78)";
+            launchStatus.style.color = "red";
         }
 
         if (fuelLevel < fuelLevelReq) {
