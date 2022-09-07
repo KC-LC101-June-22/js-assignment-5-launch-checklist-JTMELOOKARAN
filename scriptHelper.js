@@ -37,6 +37,33 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     const launchStatus = document.getElementById("launchStatus");
     const faultyItems = document.getElementById("faultyItems");
 
+    //Initialize errror mesage string 
+   /*let errorMsg = "";
+   //pilot 
+   if (validateInput(pilot) === "Is a Number" || pilot === ""){
+       errorMsg += "Input invalid";
+
+   }
+   //individually do the same for co-pilot and other arguments 
+   if (validateInput(copilot)==="Is a Number" || copilot === ""){
+       errorMsg += "Input Invalid";
+    
+   }
+
+    if (validateInput(fuelLevel)==="Not a Number" || fuelLevel === ""){
+        errorMsg += "Input Invalid";
+    }
+
+    if (validateInput(cargoLevel)==="Not a Number" || cargoLevel === ""){
+        errorMsg += "Input Invalid";
+    }
+
+    if (!(errorMsg=== "")){
+        alert(errorMsg)
+        console.log(errorMsg)
+        return
+    }
+    */
     if (validateInput(pilot) === "Not a Number" && validateInput(copilot) === "Not a Number" && validateInput(fuelLevel) === "Is a Number" && validateInput(cargoLevel) === "Is a Number") {
         faultyItems.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
